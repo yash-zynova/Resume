@@ -1,0 +1,61 @@
+/* Custom Component Styling and Animations */
+
+/* Modern Card Effect */
+.card {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Header Animation */
+  .header-animation {
+    animation: slideInLeft 1s ease-out;
+  }
+  
+  /* Fade-in Content */
+  .content-fade {
+    animation: fadeIn 1s ease-out;
+  }
+  
+  /* Navigation Link Hover Effect */
+  .nav-link {
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #60a5fa; /* Tailwind blue-400 */
+  }
+  
+  /* Modern Footer Style */
+  .footer-modern {
+    background-color: #1f2937; /* Tailwind gray-800 */
+    color: #e5e7eb;         /* Tailwind gray-200 */
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+  }
+  
+  /* Custom Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f0f4f8;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+  }
+  
