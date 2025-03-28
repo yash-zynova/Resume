@@ -1,22 +1,37 @@
-const pool = require("../config/dbConfig");
+module.exports = (sequelize, DataTypes) => {
+  const Resume = sequelize.define(
+    "Resume",
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isEmail: true,
+        },
+      },
+      summary: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "resumes",
+      timestamps: true,
+      createdAt: "created_at",
+      updatedAt: false, // if you don't need an updatedAt column, set to false
+    }
+  );
 
-const Resume = {
-  // Create a new resume
-  async create({ name, email, summary }) {
-    const result = await pool.query(
-      "INSERT INTO resumes (name, email, summary) VALUES ($1, $2, $3) RETURNING *",
-      [name, email, summary]
-    );
-    return result.rows[0];
-  },
+  // Custom static method to retrieve the most recent resume
+  Resume.getLatest = async function () {
+    return await Resume.findOne({
+      order: [["created_at", "DESC"]],
+    });
+  };
 
-  // Retrieve the most recent resume
-  async getLatest() {
-    const result = await pool.query(
-      "SELECT * FROM resumes ORDER BY created_at DESC LIMIT 1"
-    );
-    return result.rows[0];
-  },
+  return Resume;
 };
-
-module.exports = Resume;
