@@ -5,17 +5,58 @@ const { Resume } = require("../models");
 
 exports.createResume = async (req, res) => {
   try {
-    const { name, email, summary } = req.body;
+    const {
+      name,
+      email,
+      phone,
+      address,
+      summary,
+      workExperience,
+      education,
+      skills,
+      projects,
+      certifications,
+      languages,
+      volunteerExperience,
+      interests,
+    } = req.body;
 
     const resume = await Resume.create({
       name,
       email,
+      phone,
+      address,
       summary,
+      workExperience,
+      education,
+      skills,
+      projects,
+      certifications,
+      languages,
+      volunteerExperience,
+      interests,
     });
     res.status(201).json(resume);
   } catch (error) {
     console.error("Error creating resume:", error);
     return res.status(500).json({ message: error.message });
+  }
+};
+
+// Get Latest Resume
+
+exports.getLatestResume = async (req, res) => {
+  try {
+    const resume = await Resume.findOne({ order: [["id", "DESC"]] });
+    if (!resume) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Resume not found" });
+    }
+    res.status(200).json({ success: true, data: resume });
+  } catch (error) {
+    console.error("Error getting latest resume:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -83,22 +124,5 @@ exports.deleteResume = async (req, res) => {
   } catch (error) {
     console.error("Error deleting resume:", error);
     res.status(500).json({ success: false, message: "Server error" });
-  }
-};
-
-// Get Latest Resume
-
-exports.getLatestResume = async (req, res) => {
-  try {
-    const resume = await Resume.findOne({ order: [["id", "DESC"]] });
-    if (!resume) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Resume not found" });
-    }
-    res.status(200).json({ success: true, data: resume });
-  } catch (error) {
-    console.error("Error getting latest resume:", error);
-    return res.status(500).json({ success: false, message: "Server error" });
   }
 };
