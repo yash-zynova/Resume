@@ -4,6 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/errorHandler");
 const authRoutes = require("./routes/authRoutes");
+const resumeRoutes = require("./routes/resumeRoutes");
 const db = require("./models");
 
 // Middleware
@@ -15,6 +16,7 @@ app.use(express.json());
 // API Routes
 
 app.use("/api/auth", authRoutes);
+app.use("/api/resumes", resumeRoutes);
 
 // Global Error Handler
 
