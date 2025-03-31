@@ -21,7 +21,7 @@ const ResumeForm = () => {
     setLoading(true);
     setError(null);
     try {
-      const { data } = await axios.post('/api/resumes', formData);
+      const { data } = await axios.post('/api/resumes/create', formData);
       navigate('/preview', { state: { resumeData: data.data } });
     } catch  {
       setError('Failed to generate resume. Please try again.');
