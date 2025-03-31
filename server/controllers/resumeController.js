@@ -12,7 +12,7 @@ exports.createResume = async (req, res) => {
       email,
       summary,
     });
-    res.status(201).JSON(resume);
+    res.status(201).json(resume);
   } catch (error) {
     console.error("Error creating resume:", error);
     return res.status(500).json({ message: error.message });
@@ -90,7 +90,7 @@ exports.deleteResume = async (req, res) => {
 
 exports.getLatestResume = async (req, res) => {
   try {
-    const resume = await Resume.getLatest();
+    const resume = await Resume.findOne({ order: [["id", "DESC"]] });
     if (!resume) {
       return res
         .status(404)
