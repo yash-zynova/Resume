@@ -4,22 +4,22 @@ const resumeController = require("../controllers/resumeController");
 
 // Route to create a new resume
 
-router.post("/resumes", resumeController.createResume);
+router.post("/create", resumeController.createResume);
 
 // Route to get a resume by ID
 
-router.get("/resumes/:id", resumeController.getResumeById);
+router.get("/:id", resumeController.getResumes);
 
 // Route to update a resume by ID
 
-router.put("/resumes/:id", resumeController.updateResume);
+router.put("/:id", resumeController.updateResume);
 
 // Route to delete a resume by ID
 
-router.delete("/resumes/:id", resumeController.deleteResume);
+router.delete("/:id", resumeController.deleteResume);
 
 // Route to get all resumes
 
-router("/resumes", resumeController.getAllResumes);
+router.get("/", resumeController.getLatestResume);
 
 module.exports = router;
