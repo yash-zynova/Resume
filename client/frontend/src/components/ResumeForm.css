@@ -1,0 +1,202 @@
+/* Global styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Form container */
+.form-container {
+  max-width: 800px;
+  background: #fff;
+  margin: 40px auto;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form sections */
+.form-section {
+  margin-bottom: 20px;
+}
+
+.form-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+/* Labels */
+label {
+  display: block;
+  font-weight: 600;
+  margin: 8px 0 5px;
+}
+
+/* Inputs and Textareas */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:focus, textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Work Experience section */
+.experience-section {
+  background: #f1f1f1;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+/* Add button */
+.add-btn {
+  display: block;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.add-btn:hover {
+  background: #0056b3;
+}
+
+/* Submit button */
+.button-group {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-group button {
+  background: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.button-group button:hover {
+  background: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .form-section h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Icon button base style */
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* Style for the add button */
+.add-btn {
+  background: #007bff;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  font-weight: bold;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+/* Hover state for add button */
+.add-btn:hover {
+  background: #0056b3;
+}
+
+/* Style for the remove button */
+.remove-btn {
+  color: red;
+  font-size: 1.2rem;
+}
+
+/* Layout for experience header to align title and remove button */
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* Combined button group in experience header */
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* Container for the add and remove buttons */
+.btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+/* Base icon button style */
+.icon-btn {
+  background: none;
+  border: 1px solid #007bff;
+  color: #007bff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Hover states */
+.icon-btn:hover:not(:disabled) {
+  background: #007bff;
+  color: #fff;
+}
+
+/* Disabled state for remove button */
+.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Existing styles for form container and inputs remain unchanged */
+.form-container {
+  max-width: 800px;
+  background: #fff;
+  margin: 40px auto;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ... rest of your CSS remains unchanged ... */
