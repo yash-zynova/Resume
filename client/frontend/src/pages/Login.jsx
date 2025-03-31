@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ identifier: '', password: '' });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Login = () => {
           <label>Email:</label>
           <input
             type="email"
-            name="email"
+            name="identifier"
             value={formData.email}
             onChange={handleChange}
             className="w-full border rounded p-2 mt-1"
