@@ -113,6 +113,7 @@ const ResumeForm = () => {
       {error && <p className="text-red-500">{error}</p>}
 
       {/* Basic Information */}
+      <h3 className="text-lg font-bold mt-4">Personal Information</h3>
       <div>
         <label className="block text-gray-700">Name:</label>
         <input
