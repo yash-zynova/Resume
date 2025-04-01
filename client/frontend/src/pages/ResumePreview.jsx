@@ -50,12 +50,9 @@ const ResumePreview = () => {
       jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
       pagebreak: { mode: ['css', 'legacy'] }
     };
-  
     html2pdf().set(opt).from(element).save();
   };
   
-  
-
   // Function to download resume as DOCX using docx
 
   const downloadWord = () => {
@@ -172,7 +169,7 @@ const ResumePreview = () => {
   };
 
   // Render chosen template based on user selection
-  
+
   const renderTemplate = () => {
     if (!resume) return null;
     switch (template) {
