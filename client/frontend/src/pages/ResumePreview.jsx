@@ -43,7 +43,7 @@ const ResumePreview = () => {
     const element = document.getElementById('resume-preview');
   
     const opt = {
-      margin: 0.9, // Margins in inches
+      margin: 0.9, // Margins in inches, you will see diffrence in the pdf
       filename: 'resume.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2},
