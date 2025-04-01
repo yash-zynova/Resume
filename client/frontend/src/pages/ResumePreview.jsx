@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './styles.css';
 import html2pdf from 'html2pdf.js';
-
 import { Document, Packer, Paragraph, TextRun } from 'docx';
 
 const ResumePreview = () => {
@@ -39,6 +38,7 @@ const ResumePreview = () => {
   }, [location.state]);
 
   // Function to download resume as PDF using jsPDF and autoTable
+
   const downloadPDF = () => {
     const element = document.getElementById('resume-preview');
   
@@ -57,20 +57,27 @@ const ResumePreview = () => {
   
 
   // Function to download resume as DOCX using docx
+
   const downloadWord = () => {
     if (!resume) return;
     const doc = new Document({
       sections: [{
         children: [
+
           // Header
+
           new Paragraph({ text: resume.name, heading: 'Heading1' }),
           new Paragraph({ text: `${resume.email} | ${resume.phone} | ${resume.address}` }),
           new Paragraph({ text: '' }),
+
           // Summary
+
           new Paragraph({ text: 'Professional Summary', heading: 'Heading2' }),
           new Paragraph({ text: resume.summary || '' }),
           new Paragraph({ text: '' }),
+
           // Work Experience
+
           new Paragraph({ text: 'Work Experience', heading: 'Heading2' }),
           ...(
             resume.workExperience
@@ -85,7 +92,9 @@ const ResumePreview = () => {
               : []
           ),
           new Paragraph({ text: '' }),
+
           // Education
+
           new Paragraph({ text: 'Education', heading: 'Heading2' }),
           ...(
             resume.education
@@ -100,11 +109,15 @@ const ResumePreview = () => {
               : []
           ),
           new Paragraph({ text: '' }),
+
           // Skills
+
           new Paragraph({ text: 'Skills', heading: 'Heading2' }),
           new Paragraph({ text: resume.skills || '' }),
           new Paragraph({ text: '' }),
+
           // Projects
+
           new Paragraph({ text: 'Projects', heading: 'Heading2' }),
           ...(
             resume.projects
@@ -121,19 +134,27 @@ const ResumePreview = () => {
               : []
           ),
           new Paragraph({ text: '' }),
+
           // Certifications
+
           new Paragraph({ text: 'Certifications', heading: 'Heading2' }),
           new Paragraph({ text: resume.certifications || '' }),
           new Paragraph({ text: '' }),
+
           // Languages
+
           new Paragraph({ text: 'Languages', heading: 'Heading2' }),
           new Paragraph({ text: resume.languages || '' }),
           new Paragraph({ text: '' }),
+
           // Volunteer Experience
+
           new Paragraph({ text: 'Volunteer Experience', heading: 'Heading2' }),
           new Paragraph({ text: resume.volunteerExperience || '' }),
           new Paragraph({ text: '' }),
+
           // Interests
+
           new Paragraph({ text: 'Interests', heading: 'Heading2' }),
           new Paragraph({ text: resume.interests || '' })
         ]
@@ -151,6 +172,7 @@ const ResumePreview = () => {
   };
 
   // Render chosen template based on user selection
+  
   const renderTemplate = () => {
     if (!resume) return null;
     switch (template) {
