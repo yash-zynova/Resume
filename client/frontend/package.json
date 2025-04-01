@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.0.17",
     "axios": "^1.8.4",
     "docx": "^9.3.0",
+    "html2pdf.js": "^0.10.3",
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",
     "react": "^19.0.0",

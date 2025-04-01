@@ -13,6 +13,7 @@ function App() {
         <Route path="/preview" element={<ResumePreview />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/resume-preview" element={<ResumePreview />} />
       </Routes>
     </Router>
   );
