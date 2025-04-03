@@ -12,6 +12,8 @@ const TemplateSelector = ({ selectedTemplate, onSelectTemplate }) => {
         <option value="classic">Classic</option>
         <option value="modern">Modern</option>
         <option value="minimal">Minimal</option>
+        <option value="sleek">Sleek</option>
+     
       </select>
     </div>
   );

@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import ClassicTemplate from '../components/templates/ClassicTemp';
 import ModernTemplate from '../components/templates/ModernTemp';
 import MinimalTemplate from '../components/templates/MinimalTemp';
+import SleekTemplate from '../components/templates/SleekTemplate';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './styles.css';
@@ -177,12 +178,15 @@ const ResumePreview = () => {
         return <ModernTemplate resume={resume} />;
       case 'minimal':
         return <MinimalTemplate resume={resume} />;
+        case 'sleek':
+        return <SleekTemplate resume={resume} />;
+   
       case 'classic':
       default:
         return <ClassicTemplate resume={resume} />;
     }
   };
-
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
