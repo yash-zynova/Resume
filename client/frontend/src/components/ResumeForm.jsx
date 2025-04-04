@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import TemplateSelector from './TemplateSelector';
 import './ResumeForm.css';
 
@@ -52,10 +53,20 @@ const ResumeForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Navigate to the preview page passing resume and selected template
-    navigate('/resume-preview', { state: { resumeData: resume, template: selectedTemplate } });
+    try {
+      // Ensure the URL matches your backend endpoint
+      const response = await axios.post('/api/resumes/create', resume);
+      if (response.status === 201) {
+        const createdResume = response.data;
+        // Navigate to preview page with the created resume data and selected template
+        navigate('/resume-preview', { state: { resumeData: createdResume, template: selectedTemplate } });
+      }
+    } catch (error) {
+      console.error("Error saving resume:", error);
+      // Optionally, show an error message to the user
+    }
   };
 
   return (
@@ -91,21 +102,56 @@ const ResumeForm = () => {
             <div className="experience-header">
               <h3>Experience {index + 1}</h3>
               <div className="btn-group">
-                <button type="button" className="icon-btn" onClick={() => handleAddArrayItem('workExperience', { jobTitle: '', company: '', duration: '', description: '' })} title="Add Work Experience">+</button>
-                <button type="button" className="icon-btn" onClick={() => handleRemoveArrayItem('workExperience', index)} title="Remove Work Experience" disabled={resume.workExperience.length === 1}>&times;</button>
+                <button
+                  type="button"
+                  className="icon-btn"
+                  onClick={() => handleAddArrayItem('workExperience', { jobTitle: '', company: '', duration: '', description: '' })}
+                  title="Add Work Experience"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  className="icon-btn"
+                  onClick={() => handleRemoveArrayItem('workExperience', index)}
+                  title="Remove Work Experience"
+                  disabled={resume.workExperience.length === 1}
+                >
+                  &times;
+                </button>
               </div>
             </div>
             <label htmlFor={`jobTitle-${index}`}>Job Title</label>
-            <input id={`jobTitle-${index}`} value={exp.jobTitle} onChange={(e) => handleArrayChange('workExperience', index, 'jobTitle', e.target.value)} placeholder="Job Title" />
+            <input
+              id={`jobTitle-${index}`}
+              value={exp.jobTitle}
+              onChange={(e) => handleArrayChange('workExperience', index, 'jobTitle', e.target.value)}
+              placeholder="Job Title"
+            />
 
             <label htmlFor={`company-${index}`}>Company</label>
-            <input id={`company-${index}`} value={exp.company} onChange={(e) => handleArrayChange('workExperience', index, 'company', e.target.value)} placeholder="Company Name" />
+            <input
+              id={`company-${index}`}
+              value={exp.company}
+              onChange={(e) => handleArrayChange('workExperience', index, 'company', e.target.value)}
+              placeholder="Company Name"
+            />
 
             <label htmlFor={`duration-${index}`}>Duration</label>
-            <input id={`duration-${index}`} value={exp.duration} onChange={(e) => handleArrayChange('workExperience', index, 'duration', e.target.value)} placeholder="Duration" />
+            <input
+              id={`duration-${index}`}
+              value={exp.duration}
+              onChange={(e) => handleArrayChange('workExperience', index, 'duration', e.target.value)}
+              placeholder="Duration"
+            />
 
             <label htmlFor={`description-${index}`}>Description</label>
-            <textarea id={`description-${index}`} value={exp.description} onChange={(e) => handleArrayChange('workExperience', index, 'description', e.target.value)} placeholder="Description" />
+            <textarea
+              id={`description-${index}`}
+              value={exp.description}
+              onChange={(e) => handleArrayChange('workExperience', index, 'description', e.target.value)}
+              placeholder="Description"
+            />
           </div>
         ))}
       </div>
@@ -118,18 +164,53 @@ const ResumeForm = () => {
             <div className="section-header">
               <h3>Education {index + 1}</h3>
               <div className="btn-group">
-                <button type="button" className="icon-btn" onClick={() => handleAddArrayItem('education', { degree: '', institution: '', duration: '', details: '' })} title="Add Education">+</button>
-                <button type="button" className="icon-btn" onClick={() => handleRemoveArrayItem('education', index)} title="Remove Education" disabled={resume.education.length === 1}>&times;</button>
+                <button
+                  type="button"
+                  className="icon-btn"
+                  onClick={() => handleAddArrayItem('education', { degree: '', institution: '', duration: '', details: '' })}
+                  title="Add Education"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  className="icon-btn"
+                  onClick={() => handleRemoveArrayItem('education', index)}
+                  title="Remove Education"
+                  disabled={resume.education.length === 1}
+                >
+                  &times;
+                </button>
               </div>
             </div>
             <label htmlFor={`degree-${index}`}>Degree</label>
-            <input id={`degree-${index}`} value={edu.degree} onChange={(e) => handleArrayChange('education', index, 'degree', e.target.value)} placeholder="Degree" />
+            <input
+              id={`degree-${index}`}
+              value={edu.degree}
+              onChange={(e) => handleArrayChange('education', index, 'degree', e.target.value)}
+              placeholder="Degree"
+            />
             <label htmlFor={`institution-${index}`}>Institution</label>
-            <input id={`institution-${index}`} value={edu.institution} onChange={(e) => handleArrayChange('education', index, 'institution', e.target.value)} placeholder="Institution" />
+            <input
+              id={`institution-${index}`}
+              value={edu.institution}
+              onChange={(e) => handleArrayChange('education', index, 'institution', e.target.value)}
+              placeholder="Institution"
+            />
             <label htmlFor={`durationEdu-${index}`}>Duration</label>
-            <input id={`durationEdu-${index}`} value={edu.duration} onChange={(e) => handleArrayChange('education', index, 'duration', e.target.value)} placeholder="Duration" />
+            <input
+              id={`durationEdu-${index}`}
+              value={edu.duration}
+              onChange={(e) => handleArrayChange('education', index, 'duration', e.target.value)}
+              placeholder="Duration"
+            />
             <label htmlFor={`details-${index}`}>Details</label>
-            <textarea id={`details-${index}`} value={edu.details} onChange={(e) => handleArrayChange('education', index, 'details', e.target.value)} placeholder="Details" />
+            <textarea
+              id={`details-${index}`}
+              value={edu.details}
+              onChange={(e) => handleArrayChange('education', index, 'details', e.target.value)}
+              placeholder="Details"
+            />
           </div>
         ))}
       </div>
@@ -149,18 +230,53 @@ const ResumeForm = () => {
             <div className="section-header">
               <h3>Project {index + 1}</h3>
               <div className="btn-group">
-                <button type="button" className="icon-btn" onClick={() => handleAddArrayItem('projects', { title: '', description: '', technologies: '', link: '' })} title="Add Project">+</button>
-                <button type="button" className="icon-btn" onClick={() => handleRemoveArrayItem('projects', index)} title="Remove Project" disabled={resume.projects.length === 1}>&times;</button>
+                <button
+                  type="button"
+                  className="icon-btn"
+                  onClick={() => handleAddArrayItem('projects', { title: '', description: '', technologies: '', link: '' })}
+                  title="Add Project"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  className="icon-btn"
+                  onClick={() => handleRemoveArrayItem('projects', index)}
+                  title="Remove Project"
+                  disabled={resume.projects.length === 1}
+                >
+                  &times;
+                </button>
               </div>
             </div>
             <label htmlFor={`title-${index}`}>Title</label>
-            <input id={`title-${index}`} value={proj.title} onChange={(e) => handleArrayChange('projects', index, 'title', e.target.value)} placeholder="Project Title" />
+            <input
+              id={`title-${index}`}
+              value={proj.title}
+              onChange={(e) => handleArrayChange('projects', index, 'title', e.target.value)}
+              placeholder="Project Title"
+            />
             <label htmlFor={`descriptionProj-${index}`}>Description</label>
-            <textarea id={`descriptionProj-${index}`} value={proj.description} onChange={(e) => handleArrayChange('projects', index, 'description', e.target.value)} placeholder="Project Description" />
+            <textarea
+              id={`descriptionProj-${index}`}
+              value={proj.description}
+              onChange={(e) => handleArrayChange('projects', index, 'description', e.target.value)}
+              placeholder="Project Description"
+            />
             <label htmlFor={`technologies-${index}`}>Technologies</label>
-            <input id={`technologies-${index}`} value={proj.technologies} onChange={(e) => handleArrayChange('projects', index, 'technologies', e.target.value)} placeholder="Technologies Used" />
+            <input
+              id={`technologies-${index}`}
+              value={proj.technologies}
+              onChange={(e) => handleArrayChange('projects', index, 'technologies', e.target.value)}
+              placeholder="Technologies Used"
+            />
             <label htmlFor={`link-${index}`}>Link</label>
-            <input id={`link-${index}`} value={proj.link} onChange={(e) => handleArrayChange('projects', index, 'link', e.target.value)} placeholder="Project URL" />
+            <input
+              id={`link-${index}`}
+              value={proj.link}
+              onChange={(e) => handleArrayChange('projects', index, 'link', e.target.value)}
+              placeholder="Project URL"
+            />
           </div>
         ))}
       </div>

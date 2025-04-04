@@ -1,4 +1,3 @@
-const crypto = require("crypto");
 const { Resume } = require("../models");
 
 // Create a new resume

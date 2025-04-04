@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SleekTemplateA4 = ({ resume }) => {
+const SleekTemplate  = ({ resume }) => {
   return (
     <div className="mx-auto my-4 print:my-0" style={{ width: '210mm', minHeight: '297mm' }}>
       <div className="bg-gray-50 shadow-md rounded-lg overflow-hidden print:shadow-none print:rounded-none">
@@ -104,4 +104,4 @@ const SleekTemplateA4 = ({ resume }) => {
   );
 };
 
-export default SleekTemplateA4;
+export default SleekTemplate ;
